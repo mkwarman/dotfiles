@@ -10,7 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugins:
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'scrooloose/syntastic'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
@@ -73,3 +74,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 noremap <Leader>f :NERDTreeToggle<Enter> 
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
+
+" rainbow_parentheses
+" Always on:
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
