@@ -41,6 +41,7 @@ syntax on
 colorscheme ron
 set ic " Ignore case when searching
 set hlsearch " Enable highlight search results
+set backspace=indent,eol,start
 
 " Syntastic
 set statusline+=%#warningmsg#
