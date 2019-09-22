@@ -1,3 +1,6 @@
+" Install Vundle:
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 set nocompatible " be iMproved, required
 filetype off " required
 
@@ -16,7 +19,7 @@ Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'scrooloose/syntastic'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'valloric/youcompleteme'
+"Plugin 'valloric/youcompleteme'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -24,18 +27,24 @@ Plugin 'rizzatti/dash.vim'
 "Plugin 'dkprice/vim-easygrep'
 Plugin 'mhinz/vim-grepper'
 Plugin 'tomasiser/vim-code-dark'
+Plugin 'nvie/vim-flake8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert spaces
+set expandtab
 
 "" -------- PAYLOCITY SPECIFIC SETTINGS --------
 "" show existing tab with 2 spaces width
 "set tabstop=2
 "" when indenting with '>', use 2 spaces width
 "set shiftwidth=2
-"" On pressing tab, insert 2 spaces
-"set expandtab
 "" Stop adding newlines at the end of files (though they should really be there
 "" for POSIX compliance
 "set nofixendofline
