@@ -16,27 +16,27 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'tpope/vim-surround'
 "Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'junegunn/rainbow_parentheses.vim'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
 "Plugin 'valloric/youcompleteme'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rizzatti/dash.vim'
+"Plugin 'rizzatti/dash.vim'
 "Plugin 'dkprice/vim-easygrep'
-Plugin 'mhinz/vim-grepper'
+"Plugin 'mhinz/vim-grepper'
 Plugin 'tomasiser/vim-code-dark'
-Plugin 'nvie/vim-flake8'
+"Plugin 'nvie/vim-flake8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " show existing tab with 4 spaces width
-set tabstop=4
+set tabstop=2
 " when indenting with '>', use 4 spaces width
-set shiftwidth=4
+set shiftwidth=2
 " On pressing tab, insert spaces
 set expandtab
 
@@ -63,15 +63,15 @@ set hlsearch " Enable highlight search results
 set backspace=indent,eol,start
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+"autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 " vim-gitgutter
 set updatetime=100
