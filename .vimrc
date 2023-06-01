@@ -40,16 +40,6 @@ set shiftwidth=2
 " On pressing tab, insert spaces
 set expandtab
 
-"" -------- PAYLOCITY SPECIFIC SETTINGS --------
-"" show existing tab with 2 spaces width
-"set tabstop=2
-"" when indenting with '>', use 2 spaces width
-"set shiftwidth=2
-"" Stop adding newlines at the end of files (though they should really be there
-"" for POSIX compliance
-"set nofixendofline
-"" -------- END PAYLOCITY SPECIFIC SETTINGS --------
-
 " Line numbers"
 set number
 
