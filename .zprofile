@@ -23,6 +23,49 @@ alias codemorn="code ~/Development/mono/packages/morn"
 alias codetribbles="code ~/Development/mono/bytes/tribbles"
 alias codesisko="code ~/Development/mono/bytes/sisko"
 
+
+
+find_service () {
+  echo $(command ls -d ~/Development/mono/services/* | grep "$1")
+}
+
+find_byte () {
+  echo $(command ls -d ~/Development/mono/bytes/* | grep "$1")
+}
+
+start () {
+  if [[ -z $1 ]]; then
+    echo "Name of service or byte is required"
+    return 1
+  fi
+
+  for arg in "$@"; do
+    found_service=$(find_service "$arg")
+    if [[ -n $found_service ]]; then
+      tmux_command="cd $found_service; yarn start"
+      command tmux new-session -d -s "$arg" "$tmux_command"
+      if [[ "$?" == 0 ]]; then
+        echo "Started service $arg"
+      fi
+      continue
+    fi
+
+    found_byte=$(find_byte "$arg")
+    if [[ -n $found_byte ]]; then
+      if [[ "$arg" == "tribbles" ]]; then
+        tmux_command="cd $found_byte; yarn start-tribbles"
+      else
+        tmux_command="cd $found_byte; yarn start-byte"
+      fi
+      command tmux new-session -d -s "$arg" "$tmux_command"
+      if [[ "$?" == 0 ]]; then
+        echo "Started byte $arg"
+      fi
+      continue
+    fi
+  done
+}
+
 git() {
   if [[ $@ == "ls" || $@ == "pwd" ]]; then
     command git branch --show-current
