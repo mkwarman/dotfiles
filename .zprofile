@@ -15,15 +15,8 @@ alias devmorn="cd ~/Development/mono/packages/morn"
 alias devtribbles="cd ~/Development/mono/bytes/tribbles"
 alias devsisko="cd ~/Development/mono/bytes/sisko"
 
-# open VSCode to project directories
-alias codemono="code ~/Development/mono"
-alias codelaforge="code ~/Development/mono/services/la-forge"
-alias codechakotay="code ~/Development/mono/services/chakotay"
-alias codemorn="code ~/Development/mono/packages/morn"
-alias codetribbles="code ~/Development/mono/bytes/tribbles"
-alias codesisko="code ~/Development/mono/bytes/sisko"
-
-
+# Get project directories. Should probably make a variable for mono path
+# find /Users/mkwarman/Development/mono/{devops,packages,services,bytes}/* -maxdepth 0 -type d
 
 find_service () {
   echo $(command ls -d ~/Development/mono/services/* | grep "$1")
@@ -31,6 +24,14 @@ find_service () {
 
 find_byte () {
   echo $(command ls -d ~/Development/mono/bytes/* | grep "$1")
+}
+
+find_package () {
+  echo $(command ls -d ~/Development/mono/packages/* | grep "$1")
+}
+
+find_devops () {
+  echo $(command ls -d ~/Development/mono/devops/* | grep "$1")
 }
 
 start () {
@@ -64,6 +65,39 @@ start () {
       continue
     fi
   done
+}
+
+codef () {
+  if [[ -z "$1" ]]; then
+    echo "Project name is required"
+    return 1
+  fi
+
+  found_service=$(find_service "$1")
+  if [[ -n $found_service ]]; then
+    command code "$found_service"
+    return 0;
+  fi
+
+  found_byte=$(find_byte "$1")
+  if [[ -n $found_byte ]]; then
+    command code "$found_byte"
+    return 0;
+  fi
+
+  found_package=$(find_package "$1")
+  if [[ -n $found_package ]]; then
+    command code "$found_package"
+    return 0;
+  fi
+
+  found_devops=$(find_devops "$1")
+  if [[ -n $found_devops ]]; then
+    command code "$found_devops"
+    return 0;
+  fi
+
+  echo "No matching project found"
 }
 
 git() {
