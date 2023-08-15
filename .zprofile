@@ -6,14 +6,26 @@ path+=("/Users/mkwarman/bin")
 export PATH
 
 alias ll="ls -al"
+alias tas="tmux attach-session -t"
+alias tls="tmux ls"
 
 # cd to project directories
 alias devmono="cd ~/Development/mono"
-alias devlaforge="cd ~/Development/mono/services/la-forge"
-alias devchakotay="cd ~/Development/mono/services/chakotay"
-alias devmorn="cd ~/Development/mono/packages/morn"
+
 alias devtribbles="cd ~/Development/mono/bytes/tribbles"
 alias devsisko="cd ~/Development/mono/bytes/sisko"
+
+alias devweyoun="cd ~/Development/mono/devops/weyoun"
+alias devb4="cd ~/Development/mono/devops/b4"
+alias devmccoy="cd ~/Development/mono/devops/mccoy"
+
+alias devmorn="cd ~/Development/mono/packages/morn"
+
+alias devla-forge="cd ~/Development/mono/services/la-forge"
+alias devchakotay="cd ~/Development/mono/services/chakotay"
+alias devmira="cd ~/Development/mono/services/mira"
+alias devquark="cd ~/Development/mono/services/quark"
+alias devuhura="cd ~/Development/mono/services/uhura"
 
 # Get project directories. Should probably make a variable for mono path
 # find /Users/mkwarman/Development/mono/{devops,packages,services,bytes}/* -maxdepth 0 -type d
@@ -173,6 +185,20 @@ jsonify() {
   fi
 
   sed -e ':a' -e 'N' -e '$!ba' -e 's/\"/\\"/g; s/\r\n/\\n/g; s/\n/\\n/g' "${input_filename}" > "${output_filename}.json"
+}
+
+gitlogslack() {
+  if [[ $# -gt 1 ]]; then
+    to_hash="$2"
+  else
+    to_hash="HEAD"
+  fi
+
+  if [[ $# -gt 0 ]]; then
+    range="$1..$to_hash"
+  fi
+
+  command git log origin --pretty=%s $range | perl -pe 's/.*\[skip ci\].*//g' | grep -v -e '^$' | perl -pe 's/(?:[zZ][fF]1[- _]?([0-9]+))/\[ZF1-\1]\(https:\/\/puzzl.atlassian.net\/browse\/ZF1-\1\)/g' | perl -pe 's/\#([0-9]+)/[#\1](https:\/\/github.com\/zeal-corp\/mono\/pull\/\1)/g' | perl -pe 's/^/* /g'
 }
 
 
