@@ -7,16 +7,23 @@ echo -e "\nUsing project: $projpath";
 changelog_path="${projpath}CHANGELOG.md";
 
 # Extract current version from first .csproj file containing "VersionPrefix" line
-current_version=$(grep "VersionPrefix" $projpath/**/*.csproj | head -n 1 | grep -oE "[0-9]+.[0-9]+.[0-9]+")
+current_version=$(grep "VersionPrefix" $projpath/**/*.csproj | head -n 1 | grep -oE "[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?")
+
+echo "The current version is: $current_version";
+read -p "Enter new version (empty for no change): " new_version;
+
+if [[ $new_version ]]; then
+    # Update all .csproj files that contain "VersionPrefix"
+    find $projpath -type f -name "*.csproj" -exec sed -i "s/$current_version/$new_version/" {} \;
+fi
+
+read -p "Update changelog? [Y]/N: " update_changelog
+if [[ "$update_changelog" = "N" || "$update_changelog" = "n" ]]; then
+    exit 0
+fi
 
 # Find changelog line number
 changelog_start_line=$(grep -n "\[$current_version\]" $changelog_path | head -n 1 | sed "s/:.*//g");
-
-echo "The current version is: $current_version";
-read -p "Enter new version: " new_version;
-
-# Update all .csproj files that contain "VersionPrefix"
-find $projpath -type f -name "*.csproj" -exec sed -i "s/$current_version/$new_version/" {} \;
 
 # Add version number and current date to changelog entry
 changelog_entry="## [$new_version] - $(date --iso-8601)\n"
