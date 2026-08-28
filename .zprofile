@@ -20,10 +20,13 @@ alias devb4="cd ~/Development/mono/devops/b4"
 alias devmccoy="cd ~/Development/mono/devops/mccoy"
 
 alias devmorn="cd ~/Development/mono/packages/morn"
+alias devcommon="cd ~/Development/mono/packages/common"
+alias devfederation-sdk="cd ~/Development/mono/packages/federation-sdk"
 
 alias devla-forge="cd ~/Development/mono/services/la-forge"
 alias devchakotay="cd ~/Development/mono/services/chakotay"
 alias devmira="cd ~/Development/mono/services/mira"
+alias devpicard="cd ~/Development/mono/services/picard"
 alias devquark="cd ~/Development/mono/services/quark"
 alias devuhura="cd ~/Development/mono/services/uhura"
 
